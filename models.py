@@ -73,6 +73,10 @@ class Dokument(Base):
 
     tip = Column(Enum(TipDokument), nullable=False)
 
+    # НОВИ ПОЛЕТА
+    naemodatel = Column(String, nullable=True)
+    egn_bulstat = Column(String, nullable=True)
+
     filepath = Column(String, nullable=False)
     zabelezhka = Column(String, nullable=True)
 
@@ -81,7 +85,6 @@ class Dokument(Base):
         back_populates="dokument",
         cascade="all, delete"
     )
-
 
 # ─────────────────────────────
 # ПРАВО ВЪРХУ ИМОТ

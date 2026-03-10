@@ -33,6 +33,7 @@ def create_pravo_imot(
     return pravo
 
 
+
 def dokumenti_za_imot(imot_id):
     session = SessionLocal()
 
@@ -43,4 +44,36 @@ def dokumenti_za_imot(imot_id):
     )
 
     session.close()
+    return prava
+
+
+def obshta_plosht_po_dogovor(dokument_id):
+
+    session = SessionLocal()
+
+    prava = (
+        session.query(PravoImot)
+        .filter(PravoImot.dokument_id == dokument_id)
+        .all()
+    )
+
+    total = sum(p.plosht_pravo for p in prava)
+
+    session.close()
+
+    return total
+
+
+def prava_po_dogovor(dokument_id):
+
+    session = SessionLocal()
+
+    prava = (
+        session.query(PravoImot)
+        .filter(PravoImot.dokument_id == dokument_id)
+        .all()
+    )
+
+    session.close()
+
     return prava

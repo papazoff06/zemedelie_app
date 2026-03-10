@@ -7,6 +7,8 @@ def create_dokument(
     data,
     tip,
     filepath,
+    naemodatel=None,
+    egn_bulstat=None,
     zabelezhka=None
 ):
     session = SessionLocal()
@@ -16,6 +18,8 @@ def create_dokument(
         data=data,
         tip=tip,
         filepath=filepath,
+        naemodatel=naemodatel,
+        egn_bulstat=egn_bulstat,
         zabelezhka=zabelezhka
     )
 
@@ -25,3 +29,17 @@ def create_dokument(
     session.close()
 
     return dokument
+
+
+def get_all_dokumenti():
+    session = SessionLocal()
+
+    dokumenti = (
+        session.query(Dokument)
+        .order_by(Dokument.data.desc())
+        .all()
+    )
+
+    session.close()
+
+    return dokumenti

@@ -142,12 +142,13 @@ def open_prava_ui(dokument_id):
 
             session = SessionLocal()
 
+            cena = float(e_cena.get()) if e_cena.get() else 0
             pravo = PravoImot(
                 imot_id=imot_id,
                 dokument_id=dokument_id,
                 tip_pravo=tip_pravo,
                 plosht_pravo=float(e_plosht.get()),
-                cena_na_dka=float(e_cena.get()),
+                cena_na_dka=cena,
                 data_nachalo=date.fromisoformat(e_start.get()),
                 data_krai=data_krai,
             )
@@ -155,6 +156,8 @@ def open_prava_ui(dokument_id):
             session.add(pravo)
             session.commit()
             session.close()
+
+            
 
             messagebox.showinfo("OK", "Имотът е добавен към договора")
 

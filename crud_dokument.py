@@ -6,9 +6,9 @@ def create_dokument(
     nomer,
     data,
     tip,
-    filepath,
     naemodatel=None,
     egn_bulstat=None,
+    filepath="",
     zabelezhka=None
 ):
     session = SessionLocal()
